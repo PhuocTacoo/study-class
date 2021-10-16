@@ -96,7 +96,6 @@ class Nhap
 	private:
 		Thiboi a[50];
 	public:
-		void nhapn();
 		void nhap(int n);
 		void innhieu(int n);
 		void sapxep(int n);
@@ -104,6 +103,7 @@ class Nhap
 		void sapxeprank(int n);
 		void thebest(int n);
 		void rank(int n);
+		void nhapn();
 };
 void Nhap::nhapn()
 {
@@ -133,9 +133,9 @@ void Nhap::sapxeprank(int n)
 	Thiboi K;
 	for(int i=0;i<n;i++)
 		a[i].thoigianboi();
-	for(int i=0;i<n;i++)
+	for(int i=0;i<n-1;i++)
 	{
-		for(int j=0;j<n;j++)
+		for(int j=1;j<n;j++)
 			if(a[i].thoigianboi()>=a[j].thoigianboi())
 			{
 				K = a[i];
@@ -146,6 +146,7 @@ void Nhap::sapxeprank(int n)
 }
 void Nhap::rank(int n)
 {
+	int Max=a[0].thoigianboi();
 	for(int i=0;i<n;i++)
 		a[i].thoigianboi();
 	sapxeprank(n);
@@ -156,8 +157,8 @@ void Nhap::rank(int n)
  	for(int i=0;i<n;i++)
  	{
  		a[i].in1();
+ 		if(Max<a[i].thoigianboi()) rankk++;
  		cout<<right<<setw(17)<<rankk<<endl;
- 		if(a[i].thoigianboi()>a[i+1].thoigianboi()) rankk++;
  	}
 }
 void Nhap::thebest(int n)
@@ -185,8 +186,8 @@ void Nhap::nhap(int n)
 void Nhap::sapxep(int n)
 {
 	Thiboi T;
-	for(int i=0;i<n;i++)
-		for(int j=0;j<n;j++)
+	for(int i=0;i<n-1;i++)
+		for(int j=1;j<n;j++)
 		{
 			if(a[i].get_ms()<a[j].get_ms())
 			{
